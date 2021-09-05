@@ -6,12 +6,13 @@ import com.bridgelabz.linkedlistproblems.*;
 import com.bridgelabz.stackandqueueproblem.*;
 import com.bridgelabz.stackandqueueproblem.INode;
 
+
 public class StockAccount implements StockAccountInterface
 {
 	MyStack<String> stockPurchased = new MyStack<String>();
 	MyStack<String> stockSold = new MyStack<String>();
 	MyLinkedList<CompanyShares> list;
-	
+	MyQueue<Date> queue =new MyQueue<Date>();
 	Double total;
 	public StockAccount() 
 	{
@@ -63,6 +64,8 @@ public class StockAccount implements StockAccountInterface
 				this.total = value;
 				Node<String> str=new Node<String>(symbol);
 				stockPurchased.push(str);
+				Node<Date> date=new Node<Date>(new Date());
+				queue.addRear(date);
 				System.out.println(amount+" shares to stockSymbol "+symbol+" is added. Updated value is "+value);
 				return;
 			}
@@ -88,6 +91,8 @@ public class StockAccount implements StockAccountInterface
 				this.total = value;
 				Node<String> str1=new com.bridgelabz.stackandqueueproblem.Node<String>(symbol);
 				stockSold.push((INode) str1);
+				Node<Date> date=new Node<Date>(new Date());
+				queue.addRear(date);
 				System.out.println(amount+" shares of Stock "+symbol+" is sold. Updated value is "+value);
 				return;
 			}
@@ -127,6 +132,7 @@ public class StockAccount implements StockAccountInterface
 	public void printStocks() {
 		stockPurchased.printMyNodes();
 		stockSold.printMyNodes();
+		queue.printMyNodes();
 		
 	}
 	
