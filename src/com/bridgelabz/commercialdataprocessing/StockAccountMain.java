@@ -14,7 +14,7 @@ public class StockAccountMain
 		boolean flag = true;
 		while(flag) 
 		{
-			System.out.println("1:AddCompanyShares 2.RemoveCompanyShares 3.Buy shares 4:Sell shares 5: Print Report 6: Get value  7:exit");
+			System.out.println("1:AddCompanyShares 2.RemoveCompanyShares 3.Print stocks details 4.Buy shares 5:Sell shares 6: Print Report 7: Get value  8:exit");
 			int option = scanner.nextInt();
 			switch(option) {
 				case 1: stock.addCompanyShares();
@@ -27,24 +27,27 @@ public class StockAccountMain
 						stock.valueOf();
 						break;
 						
-				case 3: System.out.println("enter the stock symbol");
+				case 3: stock.printStocks();
+						break;
+						
+				case 4: System.out.println("enter the stock symbol");
 						String symbol = scanner.next();
 						System.out.println("enter the Share amount");
 						int amount = scanner.nextInt();
 						stock.buy(amount, symbol);
 						break;
 					
-				case 4: System.out.println("enter the stock symbol");
+				case 5: System.out.println("enter the stock symbol");
 						String symbolSell = scanner.next();
 						System.out.println("enter the Share amount");
 						int amountSell = scanner.nextInt();
 						stock.sell(amountSell, symbolSell);
 						break;
 					
-				case 5:	stock.printReport();
+				case 6:	stock.printReport();
 						break;
 					
-				case 6:	System.out.println("The total value of shares : " + stock.valueOf());
+				case 7:	System.out.println("The total value of shares : " + stock.valueOf());
 						break;
 					
 				default: flag = false;
