@@ -98,4 +98,21 @@ public class StockAccount implements StockAccountInterface
 	public void save(String fileName) {
 		
 	}
+	public void removeCompanyShares(String symbol) 
+	{
+		Scanner sc = new Scanner(System.in);
+		MyNode<CompanyShares> tempNode = (MyNode<CompanyShares>) list.head;
+		while(tempNode != null) 
+		{
+			String currentSymbol = tempNode.getKey().getStockSymbol();
+			if(currentSymbol.equals(symbol)) {
+				list.delete(tempNode.getKey());
+				System.out.println("Deleted Company share: "+tempNode.getKey().getStockSymbol());
+				return;
+			}
+			tempNode = (MyNode<CompanyShares>)tempNode.getNext();
+		}
+		System.out.println("CompanyShare with symbol "+symbol+" not found!");
+		
+	}
 }
