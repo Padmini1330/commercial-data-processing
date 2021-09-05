@@ -3,11 +3,15 @@ package com.bridgelabz.commercialdataprocessing;
 import java.util.Scanner;
 import java.util.Date;
 import com.bridgelabz.linkedlistproblems.*;
+import com.bridgelabz.stackandqueueproblem.*;
+import com.bridgelabz.stackandqueueproblem.INode;
 
 public class StockAccount implements StockAccountInterface
 {
-
+	MyStack<String> stockPurchased = new MyStack<String>();
+	MyStack<String> stockSold = new MyStack<String>();
 	MyLinkedList<CompanyShares> list;
+	
 	Double total;
 	public StockAccount() 
 	{
@@ -57,6 +61,8 @@ public class StockAccount implements StockAccountInterface
 				temporaryNode.getKey().setNumberOfShares(amount+currentShares);
 				double value = temporaryNode.getKey().getSharePrice() * (amount+currentShares);
 				this.total = value;
+				Node<String> str=new Node<String>(symbol);
+				stockPurchased.push(str);
 				System.out.println(amount+" shares to stockSymbol "+symbol+" is added. Updated value is "+value);
 				return;
 			}
@@ -80,6 +86,8 @@ public class StockAccount implements StockAccountInterface
 				temporaryNode.getKey().setNumberOfShares(currentShares-amount);
 				double value = temporaryNode.getKey().getSharePrice() * (currentShares-amount);
 				this.total = value;
+				Node<String> str1=new com.bridgelabz.stackandqueueproblem.Node<String>(symbol);
+				stockSold.push((INode) str1);
 				System.out.println(amount+" shares of Stock "+symbol+" is sold. Updated value is "+value);
 				return;
 			}
@@ -87,6 +95,7 @@ public class StockAccount implements StockAccountInterface
 		}
 		System.out.println("Symbol not found!");
 	}
+	
 
 	public void printReport() 
 	{
@@ -115,4 +124,10 @@ public class StockAccount implements StockAccountInterface
 		System.out.println("CompanyShare with symbol "+symbol+" not found!");
 		
 	}
+	public void printStocks() {
+		stockPurchased.printMyNodes();
+		stockSold.printMyNodes();
+		
+	}
+	
 }
